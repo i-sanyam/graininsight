@@ -9,5 +9,4 @@ if __name__ == '__main__':
     
     # Enable debug mode only if the environment is not 'production'
     debug = environment != 'production'
-    if debug:
-        app.run(debug=debug)
+    app.run(debug=debug)
