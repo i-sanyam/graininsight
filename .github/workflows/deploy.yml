@@ -1,5 +1,6 @@
 name: Basic deploy
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
 
@@ -15,5 +16,5 @@ jobs:
           aws_default_region: us-east-1
 
           aws_elb_app_port: ${{ vars.PORT }} # This should match the docker exposed port. Defaults to 3000.
-          aws_elb_healthcheck: "HTTP:${{ vars.PORT }}"
+          aws_elb_healthcheck: HTTP:${{ vars.PORT }}
           env_ghv: ${{ vars.ENVIRONMENT_VAR_PROD }}
