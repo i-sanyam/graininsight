@@ -18,6 +18,12 @@ def uptime():
     }
     return jsonify(uptime)
 
+@routes.route('/', methods=['GET'])
+def healthCheck():
+    return jsonify({
+        "status": "OK"
+    })
+
 @routes.route('/analyze', methods=['POST'])
 def analyze():
     if 'image' not in request.files:
