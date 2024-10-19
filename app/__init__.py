@@ -18,3 +18,5 @@ def create_app():
     # Record the start time
     app.config['START_TIME'] = time.time()
     return app
+
+app = create_app()
