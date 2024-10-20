@@ -5,10 +5,11 @@ from io import BytesIO
 import cv2
 import uuid
 import time
+import base64
 
 routes = Blueprint('routes', __name__)
 
-@routes.route('/internal/uptime', methods=['GET'])
+@routes.route('/api/internal/uptime', methods=['GET'])
 def uptime():
     start_time = current_app.config['START_TIME']
     current_time = time.time()
@@ -24,7 +25,7 @@ def healthCheck():
         "status": "OK"
     })
 
-@routes.route('/analyze', methods=['POST'])
+@routes.route('/api/dashboard/analyze', methods=['POST'])
 def analyze():
     if 'image' not in request.files:
         return jsonify({"error": "No image file provided"}), 400
@@ -39,9 +40,13 @@ def analyze():
     image_file.save(image_path)
 
     output_image, analysis_results = analyze_grains(image_path)
-
-    # Convert the output image to a format that can be sent in the response
     _, buffer = cv2.imencode('.jpg', output_image)
     image_bytes = BytesIO(buffer)
+    output_image_base64 = base64.b64encode(image_bytes.getvalue()).decode('utf-8')
+    attachment_name = f"result-{unique_filename}"
 
-    return send_file(image_bytes, 'image/jpeg', True, f"result-${unique_filename}"), 200, analysis_results
+    return jsonify({
+        "attachment_name": attachment_name,
+        "image_base64": output_image_base64,
+        "data": analysis_results,
+    }), 200

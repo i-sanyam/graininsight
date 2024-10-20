@@ -91,8 +91,8 @@ def analyze_grains(image_path):
             # Append kernel data
             kernel_data.append({
                 "kernel_id": kernel_id,
-                "grain_length": grain_length,
-                "grain_area": grain_area
+                "grain_length": round(grain_length),
+                "grain_area": round(grain_area),
             })
                 
 
@@ -108,14 +108,18 @@ def analyze_grains(image_path):
     adaptive_std_dev = np.std(adaptive_grain_lengths)
     adaptive_avg_area = np.mean(adaptive_grain_areas)
 
+   
     return output_image_adaptive, {
-        "count": adaptive_count,
-        "average_length": adaptive_avg_length,
-        "max_length": adaptive_max_length,
-        "min_length": adaptive_min_length,
-        "std_dev": adaptive_std_dev,
-        "average_area": adaptive_avg_area,
-        "min_area": np.min(adaptive_grain_areas),
-        "max_area": np.max(adaptive_grain_areas),
-        "kernel_data": kernel_data
+        "statistics": {
+            "count": adaptive_count,
+            "average_length": adaptive_avg_length,
+            "max_length": adaptive_max_length,
+            "min_length": adaptive_min_length,
+            "std_dev": adaptive_std_dev,
+            "average_area": adaptive_avg_area,
+            "min_area": np.min(adaptive_grain_areas),
+            "max_area": np.max(adaptive_grain_areas),
+        },
+        "kernel_data": kernel_data,
+        "kernel_headers": ["kernel_id", "grain_length", "grain_area"]
     }

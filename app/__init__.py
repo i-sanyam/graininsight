@@ -1,9 +1,11 @@
 from flask import Flask, jsonify
 from app.routes import routes
+from flask_cors import CORS
 import time
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.register_blueprint(routes)
     
     # Global error handler
