@@ -1,11 +1,12 @@
-from flask import Blueprint, request, jsonify, send_file, current_app
-from app.analyze import analyze_grains
+from flask import Blueprint, request, jsonify, current_app
 import os
 from io import BytesIO
 import cv2
 import uuid
 import time
 import base64
+from app.auth_decorator import verify_bearer_token
+from app.analyze import analyze_grains
 
 routes = Blueprint('routes', __name__)
 
@@ -26,6 +27,7 @@ def healthCheck():
     })
 
 @routes.route('/api/dashboard/analyze', methods=['POST'])
+# @verify_bearer_token
 def analyze():
     if 'image' not in request.files:
         return jsonify({"error": "No image file provided"}), 400
