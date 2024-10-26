@@ -49,12 +49,12 @@ const ApiResponseHandler: React.FC = () => {
     return (
         <div>
             <ImageUpload onImageUpload={handleImageUpload} />
-            {error && <Alert>{error}</Alert>}
+            {error && <Alert variant="destructive">{error}</Alert>}
             {apiResponse && <ImagePreview imageBase64={apiResponse} />}
-            {Object.keys(kernelStats).length > 0 && <KernelResults tableName='Kernel Stats' headers={["metric_name", "metric_value"]} data={Object.keys(kernelStats).map(kernelStatId => {
+            {Object.keys(kernelStats).length > 0 && <KernelResults tableName='Kernel Stats' headers={["metric_name", "metric_value"]} data={Object.entries(kernelStats).map(([kernelStatMetricId, kernelStatMetricValue]) => {
                 return {
-                    metric_name: kernelStatId,
-                    metric_value: kernelStats[kernelStatId],
+                    metric_name: kernelStatMetricId,
+                    metric_value: kernelStatMetricValue,
                 };
             })} />}
             {kernelResults.length > 0 && (
