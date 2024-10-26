@@ -53,8 +53,6 @@ const NumberedPaginationDataTable: React.FC<{ table: ShadTable }> = ({
     const WINDOW_SIZE = 8;
     const [currentPageIndex, setCurrentPageIndex] = React.useState(0);
     const windowFirstIndex = getWindowFirstIndex();
-    console.log(windowFirstIndex, ": windowFirstIndex");
-    // explore usage of PaginationEllipsis instead of rendering all pages
     const tooManyPages = pageCount > WINDOW_SIZE;
     if (!tooManyPages) {
         return (
@@ -76,12 +74,12 @@ const NumberedPaginationDataTable: React.FC<{ table: ShadTable }> = ({
                 {/* Mount the first page */}
                 <CustomPageNumbers length={1} startIndex={mountedFirstIndex} />
                 {showFirstElipsis && <PaginationEllipsis onClick={() => {
-                    const newIndex = Math.max(windowFirstIndex - WINDOW_SIZE - 1, 0);
+                    const newIndex = Math.max(windowFirstIndex - WINDOW_SIZE/2, 0);
                     setCurrentPageIndex(newIndex);
                 }} />}
                 <CustomPageNumbers length={WINDOW_SIZE} startIndex={windowFirstIndex} />
                 {showLastElipsis && <PaginationEllipsis onClick={() => {
-                    const newIndex = Math.min(windowLastIndex + WINDOW_SIZE - 1, mountedLastIndex);
+                    const newIndex = Math.min(windowLastIndex + WINDOW_SIZE/2 +1, mountedLastIndex);
                     setCurrentPageIndex(newIndex);
                 }} />}
                 {/* Mount the last page */}

@@ -4,6 +4,7 @@ import * as React from "react";
 import {
 	ColumnDef,
 	ColumnFiltersState,
+	PaginationState,
 	SortingState,
 	VisibilityState,
 	flexRender,
@@ -81,14 +82,13 @@ const DataTable: React.FC<DataTableProps> = ({
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
 	const DEFAULT_RECORDS_PER_PAGE = 10;
-	const [recordsPerPage, setRecordsPerPage] = React.useState(DEFAULT_RECORDS_PER_PAGE);
-	const pageCount =
-		Math.floor(data.length / recordsPerPage) + (data.length % recordsPerPage === 0 ? 0 : 1);
-	console.log(pageCount, ": pageCount", recordsPerPage, ": recordsPerPage");
+	const [pagination, setPagination] = React.useState<PaginationState>({
+		pageIndex: 0,
+		pageSize: DEFAULT_RECORDS_PER_PAGE,
+	});
 	const table = useReactTable({
 		data,
 		columns,
-		pageCount,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
@@ -97,17 +97,18 @@ const DataTable: React.FC<DataTableProps> = ({
 		getFilteredRowModel: getFilteredRowModel(),
 		onColumnVisibilityChange: setColumnVisibility,
 		onRowSelectionChange: setRowSelection,
+		onPaginationChange: setPagination,
 		state: {
 			sorting,
 			columnFilters,
 			columnVisibility,
 			rowSelection,
+			pagination,
 		},
 		// Backend doesn't have any pagination implemented yet
 		// for now backend is sending all the data at once, the results are just paginated at Frontend
-		rowCount: data.length,
 	});
-
+	const recordsPerPage = table.getState().pagination.pageSize;
 	return (
 		<div className="w-full">
 			{tableName}
@@ -152,7 +153,7 @@ const DataTable: React.FC<DataTableProps> = ({
 				</DropdownMenu>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant="outline" className="ml-auto">
+						<Button disabled={data.length <= DEFAULT_RECORDS_PER_PAGE} variant="outline" className="ml-auto">
 							{recordsPerPage} rows/page <ChevronDown className="ml-2 h-4 w-4" />
 						</Button>
 					</DropdownMenuTrigger>
@@ -166,9 +167,10 @@ const DataTable: React.FC<DataTableProps> = ({
 									key={`datatable-pagination-recordsperpage-${recordsSizeOption}`}
 									className="capitalize"
 									checked={recordsPerPage === recordsSizeOption}
-									onCheckedChange={() =>
-										setRecordsPerPage(recordsSizeOption)
-									}
+									onCheckedChange={() => {
+										table.setPageSize(Number(recordsSizeOption))
+										table.setPageIndex(0)
+									}}
 								>
 									{recordsSizeOption}
 								</DropdownMenuCheckboxItem>
