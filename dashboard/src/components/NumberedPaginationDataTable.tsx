@@ -10,8 +10,9 @@ import React from "react";
 
 type ShadTable = Table<{ [key: string]: any }>;
 
-const NumberedPaginationDataTable: React.FC<{ table: ShadTable }> = ({
+const NumberedPaginationDataTable: React.FC<{ table: ShadTable, recordsPerPage: number }> = ({
     table,
+    recordsPerPage,
 }) => {
     const CustomPageNumbers: React.FC<{
         startIndex?: number;
@@ -23,10 +24,7 @@ const NumberedPaginationDataTable: React.FC<{ table: ShadTable }> = ({
                     return (
                         <PaginationItem key={i}>
                             <PaginationLink
-                                onClick={() => {
-                                    table.setPageIndex(startIndex + i);
-                                    setCurrentPageIndex(startIndex + i);
-                                }}
+                                onClick={() => setCurrentPageIndex(startIndex + i)}
                                 isActive={currentPageIndex === startIndex + i}
                             >
                                 {startIndex + i + 1}
@@ -51,7 +49,11 @@ const NumberedPaginationDataTable: React.FC<{ table: ShadTable }> = ({
     }
     const pageCount = table.getPageCount();
     const WINDOW_SIZE = 8;
+
     const [currentPageIndex, setCurrentPageIndex] = React.useState(0);
+    React.useEffect(() => setCurrentPageIndex(0), [recordsPerPage]);
+    React.useEffect(() => table.setPageIndex(currentPageIndex), [currentPageIndex]);
+
     const windowFirstIndex = getWindowFirstIndex();
     const tooManyPages = pageCount > WINDOW_SIZE;
     if (!tooManyPages) {

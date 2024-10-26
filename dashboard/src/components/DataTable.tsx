@@ -86,6 +86,7 @@ const DataTable: React.FC<DataTableProps> = ({
 		pageIndex: 0,
 		pageSize: DEFAULT_RECORDS_PER_PAGE,
 	});
+	const [recordsPerPage, setRecordsPerPage] = React.useState(DEFAULT_RECORDS_PER_PAGE); // needed to reset pagination in numberedpaginationdatatable
 	const table = useReactTable({
 		data,
 		columns,
@@ -108,7 +109,6 @@ const DataTable: React.FC<DataTableProps> = ({
 		// Backend doesn't have any pagination implemented yet
 		// for now backend is sending all the data at once, the results are just paginated at Frontend
 	});
-	const recordsPerPage = table.getState().pagination.pageSize;
 	return (
 		<div className="w-full">
 			{tableName}
@@ -169,7 +169,7 @@ const DataTable: React.FC<DataTableProps> = ({
 									checked={recordsPerPage === recordsSizeOption}
 									onCheckedChange={() => {
 										table.setPageSize(Number(recordsSizeOption))
-										table.setPageIndex(0)
+										setRecordsPerPage(Number(recordsSizeOption));
 									}}
 								>
 									{recordsSizeOption}
@@ -230,7 +230,7 @@ const DataTable: React.FC<DataTableProps> = ({
 				</Table>
 			</div>
 			<div className="flex items-center justify-end space-x-2 py-4">
-				<NumberedPaginationDataTable table={table} />
+				<NumberedPaginationDataTable table={table} recordsPerPage={recordsPerPage}/>
 			</div>
 		</div>
 	);
