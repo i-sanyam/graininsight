@@ -7,6 +7,7 @@ import time
 import base64
 from app.auth_decorator import verify_bearer_token
 from app.analyze import analyze_grains
+from app.image_utils import validate_image_size
 
 routes = Blueprint('routes', __name__)
 
@@ -40,6 +41,11 @@ def analyze():
     unique_filename = f"{original_file_name}-{uuid.uuid4()}{file_extension}"
     image_path = os.path.join('/tmp', unique_filename)
     image_file.save(image_path)
+
+    ALLOWED_MAX_IMAGE_SIZE_MB = 3;
+    is_valid_image_size = validate_image_size(image_file, ALLOWED_MAX_IMAGE_SIZE_MB * 1024)
+    if is_valid_image_size == False:  # 3MB in bytes
+        return jsonify({"error": f"Image size exceeds {ALLOWED_MAX_IMAGE_SIZE_MB} MB"}), 400
 
     output_image, analysis_results = analyze_grains(image_path)
     _, buffer = cv2.imencode('.jpg', output_image)
