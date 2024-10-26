@@ -4,15 +4,17 @@ import { Input } from '@/components/ui/input';
 
 interface ImageUploadProps {
   onImageUpload: (image: File) => void;
+  resetResultPreview: () => void;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload, resetResultPreview }) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
     setSelectedImage(file);
+    resetResultPreview();
     if (!file) {
       setPreview(null);
       return;
