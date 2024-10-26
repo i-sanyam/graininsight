@@ -1,4 +1,7 @@
+import base64
+import cv2
 import os
+from io import BytesIO
 
 def validate_image_size(image_file, max_size_kb):
     """
@@ -16,3 +19,16 @@ def validate_image_size(image_file, max_size_kb):
         return False
     image_file.seek(0, os.SEEK_SET)  # Move the cursor back to the start of the file
     return True
+
+def convert_image_to_base64(image_file, image_format = '.jpg'):
+    """
+    Convert an image_file with image_format to base64 format.
+
+    :param image_format: The format of the image file.
+    :param image_file: The image file to convert.
+    :return: The base64 string for the image file.
+    """
+    _, buffer = cv2.imencode(image_format, image_file)
+    image_bytes = BytesIO(buffer)
+    image_base64 = base64.b64encode(image_bytes.getvalue()).decode('utf-8')
+    return image_base64
