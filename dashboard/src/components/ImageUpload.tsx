@@ -32,9 +32,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
 
   return (
     <div className="image-upload">
-      <div>Upload an image:</div>
+      <div>
+        <h2>Upload an Image</h2>
+      </div>
       <Input type="file" accept="image/*" onChange={handleImageChange} />
-      {preview && <img src={preview} alt="Image Preview" />}
+      {preview && <img height="100x" width="100px" src={preview} alt="Image Preview" />}
       <Button onClick={handleSubmit}>Submit</Button>
     </div>
   );
