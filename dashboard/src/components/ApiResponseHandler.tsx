@@ -70,6 +70,7 @@ const ApiResponseHandler: React.FC = () => {
 			{resultImage && <ImagePreview imageBase64={resultImage} />}
 			{kernelStats && Object.keys(kernelStats).length > 0 && (
 				<DataTable
+					enableColumnHiding={false}
 					tableName="Kernel Stats"
 					filterHeader="metric_name"
 					headers={["metric_name", "metric_value"]}

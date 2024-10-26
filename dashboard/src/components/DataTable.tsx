@@ -41,6 +41,7 @@ interface DataTableProps {
 	data: { [key: string]: any }[];
 	tableName: string;
 	filterHeader?: string;
+	enableColumnHiding?: boolean;
 }
 
 const DataTable: React.FC<DataTableProps> = ({
@@ -48,9 +49,10 @@ const DataTable: React.FC<DataTableProps> = ({
 	data,
 	headers,
 	filterHeader,
+	enableColumnHiding = true,
 }) => {
 	const columns: ColumnDef<{ [key: string]: DataType }>[] = headers.map(
-		(header) => {
+		(header, i) => {
 			const dataObj = data?.[0];
 			const isNumberDataType =
 				dataObj?.[header] && isNaN(dataObj[header]) === false;
@@ -71,6 +73,7 @@ const DataTable: React.FC<DataTableProps> = ({
 						header
 					);
 				},
+				enableHiding: enableColumnHiding && i > 0,
 			};
 		}
 	);
