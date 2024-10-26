@@ -1,9 +1,9 @@
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 class AppConfig:
     def __init__(self):
-        # load_dotenv()  # Load environment variables from .env file
+        load_dotenv()  # Load environment variables from .env file
         self.FLASK_ENV = os.getenv('FLASK_ENV')
         self.FE_PORT = os.getenv('FE_PORT')
         self.CLERK_BEARER_TOKEN_SECRET = os.getenv('CLERK_BEARER_TOKEN_SECRET')
