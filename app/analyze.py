@@ -111,12 +111,12 @@ def analyze_grains(image_path):
    
     return output_image_adaptive, {
         "statistics": {
-            "count": adaptive_count,
-            "average_length": adaptive_avg_length,
-            "max_length": adaptive_max_length,
-            "min_length": adaptive_min_length,
-            "std_dev": adaptive_std_dev,
-            "average_area": adaptive_avg_area,
+            "count": round(adaptive_count),
+            "average_length": round(adaptive_avg_length),
+            "max_length": round(adaptive_max_length),
+            "min_length": round(adaptive_min_length),
+            "std_dev": round(adaptive_std_dev),
+            "average_area": round(adaptive_avg_area),
             "min_area": np.min(adaptive_grain_areas),
             "max_area": np.max(adaptive_grain_areas),
         },
