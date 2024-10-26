@@ -3,11 +3,14 @@ from flask import Flask, jsonify
 from app.routes import routes
 from flask_cors import CORS
 import time
+from app.appconfig import config
+
 
 def create_app():
     app = Flask(__name__)
-    if os.getenv("FLASK_ENV") == "development":
-        fe_url = f"http://localhost:{os.getenv('FE_PORT')}"
+    print(f"FLASK_ENV: {config.FLASK_ENV}")
+    if config.FLASK_ENV == "development":
+        fe_url = f"http://localhost:{config.FE_PORT}"
         CORS(app, origins=[fe_url])
     else:
         CORS(app)
