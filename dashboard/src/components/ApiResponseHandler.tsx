@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import ImagePreview from './ImagePreview';
-import KernelResults from './KernelResults';
 import ImageUpload from './ImageUpload';
 import { Alert } from './ui/alert';
 import { useAuth } from '@clerk/clerk-react';
 import { getServerUrl } from '@/utils';
+import DataTable from './ui/DataTable';
 
 const ApiResponseHandler: React.FC = () => {
     const [resultImage, setResultImage] = useState<string | null>(null);
@@ -58,17 +58,17 @@ const ApiResponseHandler: React.FC = () => {
 
     return (
         <div>
-            <ImageUpload onImageUpload={handleImageUpload} resetResultPreview={() => { setApiResponse(null) }}/>
+            <ImageUpload onImageUpload={handleImageUpload} resetResultPreview={() => { setApiResponse(null) }} />
             {error && <Alert variant="destructive">{error}</Alert>}
             {resultImage && <ImagePreview imageBase64={resultImage} />}
-            {kernelStats && Object.keys(kernelStats).length > 0 && <KernelResults tableName='Kernel Stats' headers={["metric_name", "metric_value"]} data={Object.entries(kernelStats).map(([kernelStatMetricId, kernelStatMetricValue]) => {
+            {kernelStats && Object.keys(kernelStats).length > 0 && <DataTable tableName='Kernel Stats' filterHeader="metric_name" headers={["metric_name", "metric_value"]} data={Object.entries(kernelStats).map(([kernelStatMetricId, kernelStatMetricValue]) => {
                 return {
                     metric_name: kernelStatMetricId,
                     metric_value: kernelStatMetricValue,
                 };
             })} />}
             {kernelResults.length > 0 && (
-                <KernelResults tableName='Kernel Grain Info' headers={kernelHeaders} data={kernelResults} />
+                <DataTable tableName='Kernel Grain Info' headers={kernelHeaders} data={kernelResults} />
             )}
         </div>
     );
