@@ -1,7 +1,7 @@
 import { SignedIn } from "@clerk/clerk-react";
 import ApiResponseHandler from "./components/ApiResponseHandler";
 import Header from "./components/Header";
-import grainInsightLogo from "./assets/grain-insight-logo.png";
+import grainScanLogo from "./assets/grain-scan-logo.png";
 
 export default function App() {
 	return (
@@ -10,8 +10,8 @@ export default function App() {
 				<Header />
 			</div>
 			<div>
-				<h1>Grain Insights Dashboard</h1>
-				<img src={grainInsightLogo} alt="Grain Insights Logo" />
+				<img height="256px" width="256px" src={grainScanLogo} alt="Grain Scan Logo" />
+				<h1>Grain Scan Dashboard</h1>
 			</div>
 			<div>
 				<SignedIn>
