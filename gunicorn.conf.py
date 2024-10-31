@@ -21,13 +21,11 @@ bind = f"{ip_address}:5000"
 timeout = 10
 preload = True
 accesslog = '-'
-print_config = True
 if (os.getenv('FLASK_ENV') == 'development'):
     print("Running in development mode")
     WEB_RELOAD = True
-    loglevel = 'debug'
+    loglevel = 'info'
     workers = 1
 else:
     print("Running in production mode")
-    loglevel = 'info'
     workers = multiprocessing.cpu_count() * 2
