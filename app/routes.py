@@ -25,7 +25,7 @@ def healthCheck():
     })
 
 @routes.route('/api/dashboard/analyze', methods=['POST'])
-# @verify_bearer_token
+@verify_bearer_token
 def analyze():
     if 'image' not in request.files:
         return jsonify({"error": "No image file provided"}), 400
