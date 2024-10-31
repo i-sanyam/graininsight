@@ -12,6 +12,23 @@ const ApiResponseHandler: React.FC = () => {
 	const [kernelHeaders, setKernelHeaders] = useState<any[]>([]);
 	const [kernelStats, setKernelStats] = useState<{}>({});
 	const [error, setError] = useState<string | null>(null);
+	const [progress, setProgress] = React.useState(0);
+	React.useEffect(() => {
+		if (!progress || progress === 100) {
+			setProgress(0);
+			return;
+		}
+		const interval = setInterval(() => {
+			if (progress === 100) {
+				return 0;
+			}
+			const diff = Math.random() * 10;
+			const newProgress = Math.min(progress + diff, 100);
+			setProgress(Math.round(newProgress));
+		}, 500);
+		return () => clearInterval(interval);
+	}, [progress]);
+
 	const { getToken } = useAuth();
 
 	const setApiResponse = (
@@ -29,12 +46,14 @@ const ApiResponseHandler: React.FC = () => {
 		setKernelResults(data?.data?.kernel_data ?? []);
 		setKernelHeaders(data?.data?.kernel_headers ?? ["kernel_id"]);
 		setKernelStats(data?.data?.statistics ?? null);
+		setProgress(100);
 	};
 
 	const handleImageUpload = async (image: File) => {
 		const formData = new FormData();
 		formData.append("image", image);
 		try {
+			setProgress(1);
 			const response = await fetch(getServerUrl("/api/dashboard/analyze"), {
 				method: "POST",
 				body: formData,
@@ -68,6 +87,9 @@ const ApiResponseHandler: React.FC = () => {
 			/>
 			{error && <Alert variant="destructive">{error}</Alert>}
 			{resultImage && <ImagePreview imageBase64={resultImage} />}
+			<div style={{background: "green"}}>
+				<h3> Loading {progress}%</h3>
+			</div>
 			{kernelStats && Object.keys(kernelStats).length > 0 && (
 				<DataTable
 					enableColumnHiding={false}
