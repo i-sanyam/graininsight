@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Alert } from "./ui/alert";
 
 interface ImageUploadProps {
 	onImageUpload: (image: File) => void;
@@ -13,9 +14,16 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 }) => {
 	const [selectedImage, setSelectedImage] = useState<File | null>(null);
 	const [preview, setPreview] = useState<string | null>(null);
+	const [error, setError] = useState<string | null>(null);
 
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0] || null;
+		if (file && file.size > 5 * 1024 * 1024) { // 5MB size restriction
+			setError('File size exceeds 5MB');
+			setSelectedImage(null);
+			setPreview(null);
+			return;
+		}
 		setSelectedImage(file);
 		resetResultPreview();
 		if (!file) {
@@ -45,6 +53,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 				<img height="100x" width="100px" src={preview} alt="Image Preview" />
 			)}
 			<Button onClick={handleSubmit}>Submit</Button>
+			{error && <Alert variant="destructive">{error}</Alert>}
 		</div>
 	);
 };
