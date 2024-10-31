@@ -18,7 +18,7 @@ def uptime():
     }
     return jsonify(uptime)
 
-@routes.route('/api/internal/health', methods=['GET'])
+@routes.route('/', methods=['GET'])
 def healthCheck():
     return jsonify({
         "status": "OK"
