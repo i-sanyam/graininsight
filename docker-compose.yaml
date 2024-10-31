@@ -1,6 +1,3 @@
-access_log /var/log/nginx/access.log info;
-error_log /var/log/nginx/error.log warn;
-
 services:
   server:
     build:
