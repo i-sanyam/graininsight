@@ -48,9 +48,6 @@ USER appuser
 # Copy the source code into the container.
 COPY . .
 
-ARG FLASK_ENV
-ENV FLASK_ENV=$FLASK_ENV
-
 # Expose the port that the application listens on.
 EXPOSE 5000
 

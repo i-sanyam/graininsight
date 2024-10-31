@@ -11,15 +11,10 @@ services:
   server:
     build:
       context: .
-      args:
-        - FLASK_ENV=${FLASK_ENV}
     ports:
       - "${PORT}:5000"
     env_file:
       - .env
-    environment:
-      - FLASK_ENV=${FLASK_ENV}
-      - PORT=${PORT}
     platform: linux/amd64
 
 # The commented out section below is an example of how to define a PostgreSQL
