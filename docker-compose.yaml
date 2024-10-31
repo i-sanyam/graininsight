@@ -14,7 +14,7 @@ services:
       - FRONTEND_SERVICE_URL=${FRONTEND_SERVICE_URL}
     platform: linux/amd64
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://server:5000"]
+      test: ["CMD", "curl", "-f", "http://server:5000/api/internal/health"]
       interval: 30s
       timeout: 10s
       retries: 5
