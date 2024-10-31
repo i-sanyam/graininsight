@@ -32,6 +32,8 @@ services:
         condition: service_healthy
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./letsencrypt-site:/usr/share/nginx/html
+
     networks:
       - app-network
 
