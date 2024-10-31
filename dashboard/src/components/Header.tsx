@@ -5,12 +5,16 @@ import {
 	SignInButton,
 	UserButton,
 } from "@clerk/clerk-react";
+import { Button } from "./ui/button";
 
 const Header: React.FC = () => {
 	return (
-		<header>
+		// do styling by tailwind
+		<header style={{ display: "flex", justifyContent: "flex-end" }}>
 			<SignedOut>
-				<SignInButton />
+				<SignInButton>
+					<Button>Sign In</Button>
+				</SignInButton>
 			</SignedOut>
 			<SignedIn>
 				<UserButton />
