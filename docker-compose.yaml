@@ -13,3 +13,26 @@ services:
       - CLERK_BEARER_TOKEN_SECRET=${CLERK_BEARER_TOKEN_SECRET}
       - FRONTEND_SERVICE_URL=${FRONTEND_SERVICE_URL}
     platform: linux/amd64
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${PORT}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      server:
+        condition: service_healthy
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
