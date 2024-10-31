@@ -7,7 +7,6 @@ from app.appconfig import config
 
 def create_app():
     app = Flask(__name__)
-    # config.log_config()
     CORS(app, origins=[config.FRONTEND_SERVICE_URL])
     app.register_blueprint(routes)
     

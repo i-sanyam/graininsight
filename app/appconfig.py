@@ -10,6 +10,7 @@ class AppConfig:
         self.PORT = os.getenv('PORT', 5000)
 
     def log_config(self):
+        print("App Configuration Settings")
         print(f"FLASK_ENV: {self.FLASK_ENV}")
         print(f"FRONTEND_SERVICE_URL: {self.FRONTEND_SERVICE_URL}")
         print(f"CLERK_BEARER_TOKEN_SECRET: {self.CLERK_BEARER_TOKEN_SECRET}")
