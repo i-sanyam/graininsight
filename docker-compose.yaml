@@ -14,11 +14,13 @@ services:
       - FRONTEND_SERVICE_URL=${FRONTEND_SERVICE_URL}
     platform: linux/amd64
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:${PORT}"]
+      test: ["CMD", "curl", "-f", "http://server:5000"]
       interval: 30s
       timeout: 10s
       retries: 5
       start_period: 40s
+    networks:
+      - app-network
 
   nginx:
     image: nginx:latest
