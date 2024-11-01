@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional platform for advanced grain analysis. Measure rice kernel quality with precise metrics and scanful analytics.">
+    <meta name="keywords" content="grain analysis, rice kernel, quality metrics, advanced analytics, grain measurement, agriculture technology">
+    <link rel="icon" type="image/svg+xml" href="/grainscan.svg" />
+    <title>Grain Scan - Precision Grain Analysis</title>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #0c0c0c; color: #e5e5e5; line-height: 1.6; overflow-x: hidden; }
+        
+        /* Container */
+        .container { max-width: 1200px; margin: auto; padding: 0 20px; }
+
+        /* Header */
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 0; background-color: #0c0c0c; position: fixed; width: 100%; z-index: 100;
+        }
+        header h1 { font-weight: bold; color: #b08a4b; font-size: 1.8em; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a { color: #e5e5e5; text-decoration: none; font-size: 1.1em; }
+        nav ul li a:hover { color: #b08a4b; }
+
+        /* Hero Section */
+        .hero {
+            text-align: center; padding: 150px 20px 100px;
+            background: url('https://images.unsplash.com/photo-1603928452646-058f3510a49d') no-repeat center center/cover;
+            color: #f2f2f2;
+        }
+        .hero h1 { font-size: 3.2em; font-weight: bold; margin-bottom: 20px; color: #b08a4b; }
+        .hero p { font-size: 1.3em; max-width: 600px; margin: auto; color: #d1d1d1; }
+        .btn { background-color: #b08a4b; color: #0c0c0c; padding: 15px 30px; border: none; font-size: 1em; cursor: pointer; border-radius: 5px; margin-top: 20px; text-decoration: none; }
+        .btn:hover { background-color: #f1bf6f; }
+        .contact-btn { padding: 5px 10px; margin-left: 10px;}
+
+        /* Section Styling */
+        section { padding: 60px 0; text-align: center; }
+        h2 { font-size: 2em; font-weight: bold; color: #b08a4b; margin-bottom: 20px; }
+        p.section-text { max-width: 700px; margin: 20px auto; font-size: 1.1em; color: #b0b0b0; }
+
+        /* Card Style for Content */
+        .content-card { background-color: #1a1a1a; padding: 30px; border-radius: 10px; margin: 20px auto; max-width: 800px; }
+        
+        /* Footer */
+        footer { background-color: #0c0c0c; text-align: center; padding: 20px 0; font-size: 0.9em; color: #777; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="container">
+        <h1>Grain Scan</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="https://app.grainscan.in" class="btn">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Precision Grain Analysis</h1>
+        <p>Revolutionizing rice kernel analysis with advanced technology. Accurate scans, quality metrics, and reliable data in one platform.</p>
+        <a href="https://app.grainscan.in" class="btn">Get Started</a>
+    </section>
+
+    <!-- About Section -->
+    <section class="container" id="about">
+        <h2>About Grain Scan</h2>
+        <div class="content-card">
+            <p class="section-text">India is the largest exporter of the rice in the world and second largest producer of rice in the world. Grain Insights was started on the realisation that there is a lot of research available in the agricultural indistry to analyze the quality of the rice, but no freeware solution is present for the same. The project has started with Basmati Rice Grain Analysis, and would continue to add support for more grains.</p>
+            <p class="section-text">At Grain Scan, we offer cutting-edge tools for measuring and analyzing rice kernel quality. With highly accurate data on size, shape, and quality metrics, our platform is designed to provide the agricultural sector with essential scans for enhanced quality control and decision-making.</p>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="container" id="contact">
+        <h2>Contact Us</h2>
+        <div class="content-card">
+            <div class="section-text">
+                Have questions or need assistance?
+            </div>
+            <div>
+                <a class="btn contact-btn" href="https://github.com/i-sanyam/graininsight" target="_blank">Github</a>
+                <a target="_blank" href="https:sanyamaggarwal.com">Sanyam Aggarwal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Grain Insights. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
