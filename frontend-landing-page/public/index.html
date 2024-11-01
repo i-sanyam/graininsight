@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Professional platform for advanced grain analysis. Measure rice kernel quality with precise metrics and scanful analytics.">
     <meta name="keywords" content="grain analysis, rice kernel, quality metrics, advanced analytics, grain measurement, agriculture technology">
-    <link rel="icon" type="image/svg+xml" href="/grainscan.svg" />
+    <link rel="icon" type="image/svg+xml" href="./assets/grainscan.svg" />
     <title>Grain Scan - Precision Grain Analysis</title>
     <script defer src="/_vercel/insights/script.js"></script>
     <style>
         /* Basic Reset */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background-color: #0c0c0c; color: #e5e5e5; line-height: 1.6; overflow-x: hidden; }
+        body { font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif; background-color: #0c0c0c; color: #e5e5e5; line-height: 1.6; overflow-x: hidden; }
         
         /* Container */
         .container { max-width: 1200px; margin: auto; padding: 0 20px; }
 
         /* Header */
-        header { 
+        header {
             display: flex; justify-content: space-between; align-items: center; 
             padding: 20px 0; background-color: #0c0c0c; position: fixed; width: 100%; z-index: 100;
         }
@@ -30,14 +30,15 @@
         /* Hero Section */
         .hero {
             text-align: center; padding: 150px 20px 100px;
-            background: url('https://images.unsplash.com/photo-1603928452646-058f3510a49d') no-repeat center center/cover;
+            /* background-image: url('./assets/grain-scan-logo.png'); background-size: cover; background-position: center; */
             color: #f2f2f2;
         }
         .hero h1 { font-size: 3.2em; font-weight: bold; margin-bottom: 20px; color: #b08a4b; }
         .hero p { font-size: 1.3em; max-width: 600px; margin: auto; color: #d1d1d1; }
         .btn { background-color: #b08a4b; color: #0c0c0c; padding: 15px 30px; border: none; font-size: 1em; cursor: pointer; border-radius: 5px; margin-top: 20px; text-decoration: none; }
         .btn:hover { background-color: #f1bf6f; }
-        .contact-btn { padding: 5px 10px; margin-left: 10px;}
+        .left-margin-btn { padding: 5px 10px; margin-left: 10px;}
+        .top-margin-btn { margin-top: 10px;}
 
         /* Section Styling */
         section { padding: 60px 0; text-align: center; }
@@ -66,14 +67,17 @@
             </ul>
         </nav>
     </header>
-
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1>Precision Grain Analysis</h1>
-        <p>Revolutionizing rice kernel analysis with advanced technology. Accurate scans, quality metrics, and reliable data in one platform.</p>
-        <a href="https://app.grainscan.in" class="btn">Get Started</a>
+        <p style="margin-bottom: auto;">
+            Revolutionizing rice kernel analysis with advanced technology. Accurate scans, quality metrics, and reliable data in one platform.
+        </p>
     </section>
-
+    <div style="text-align: center;">
+        <a href="https://app.grainscan.in" style="justify-content: center; justify-items: auto;" class="btn top-margin-btn">Get Started</a>
+    </div>
+    <img style="display: flex; padding: 30px 60px;" src="./assets/grain-scan-logo.png"/>
     <!-- About Section -->
     <section class="container" id="about">
         <h2>About Grain Scan</h2>
@@ -82,7 +86,6 @@
             <p class="section-text">At Grain Scan, we offer cutting-edge tools for measuring and analyzing rice kernel quality. With highly accurate data on size, shape, and quality metrics, our platform is designed to provide the agricultural sector with essential scans for enhanced quality control and decision-making.</p>
         </div>
     </section>
-
     <!-- Contact Us Section -->
     <section class="container" id="contact">
         <h2>Contact Us</h2>
@@ -90,9 +93,12 @@
             <div class="section-text">
                 Have questions or need assistance?
             </div>
-            <div>
-                <a class="btn contact-btn" href="https://github.com/i-sanyam/graininsight" target="_blank">Github</a>
-                <a target="_blank" href="https:sanyamaggarwal.com">Sanyam Aggarwal</a>
+            <div style="display: block">
+                <a class="btn left-margin-btn" href="https://github.com/i-sanyam/graininsight" target="_blank">
+                    <img src="./assets/github-mark.png" alt="GitHub Icon" width="16" height="16" />
+                    Github
+                </a>
+                <a class="left-margin-btn btn" target="_blank" href="https:sanyamaggarwal.com">Sanyam Aggarwal</a>
             </div>
         </div>
     </section>
