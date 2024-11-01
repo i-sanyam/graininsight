@@ -6,6 +6,17 @@ import { useAuth } from "@clerk/clerk-react";
 import { getServerUrl } from "@/utils";
 import DataTable from "./DataTable";
 
+const ProgressBasic = (progress: number) => {
+	if (!progress) {
+		return;
+	}
+	return (
+		<div style={{background: "green"}}>
+			<h3> Loading {progress}%</h3>
+		</div>
+	);
+};
+
 const ApiResponseHandler: React.FC = () => {
 	const [resultImage, setResultImage] = useState<string | null>(null);
 	const [kernelResults, setKernelResults] = useState<any[]>([]);
@@ -87,9 +98,7 @@ const ApiResponseHandler: React.FC = () => {
 			/>
 			{error && <Alert variant="destructive">{error}</Alert>}
 			{resultImage && <ImagePreview imageBase64={resultImage} />}
-			<div style={{background: "green"}}>
-				<h3> Loading {progress}%</h3>
-			</div>
+			{progress !== 0 && ProgressBasic(progress)}
 			{kernelStats && Object.keys(kernelStats).length > 0 && (
 				<DataTable
 					enableColumnHiding={false}
