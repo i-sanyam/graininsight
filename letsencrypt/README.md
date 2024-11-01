@@ -5,7 +5,7 @@ https://stackoverflow.com/questions/51399883/adding-ssl-certs-to-nginx-docker-co
 Created a separate docker container just for the purpose of retreving certificates added by Certbot.
 
 ```bash
-$ docker-compose up --build
+$ cd letsencrypt && docker-compose up --build
 ```
 
 Certification initialisation
