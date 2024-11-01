@@ -32,8 +32,8 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./dhparam/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
-      - /docker-volumes/etc/letsencrypt/live/app.grainscan.in/fullchain.pem:/etc/letsencrypt/live/app.grainscan.in/fullchain.pem
-      - /docker-volumes/etc/letsencrypt/live/app.grainscan.in/privkey.pem:/etc/letsencrypt/live/app.grainscan.in/privkey.pem
+      - /docker-volumes/etc/letsencrypt/live/api.grainscan.in/fullchain.pem:/etc/letsencrypt/live/api.grainscan.in/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/api.grainscan.in/privkey.pem:/etc/letsencrypt/live/api.grainscan.in/privkey.pem
     networks:
       - app-network
 

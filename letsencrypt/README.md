@@ -17,9 +17,9 @@ $ sudo docker run -it --rm \
     -v "/docker-volumes/var/log/letsencrypt:/var/log/letsencrypt" \
     certbot/certbot \
     certonly --webroot \
-    --email devops@grainscan.com --agree-tos --no-eff-email \
+    --email devops@grainscan.in --agree-tos --no-eff-email \
     --webroot-path=/data/letsencrypt \
-    -d app.grainscan.in
+    -d api.grainscan.in
 ```
 
 Shut down the docker container.
@@ -34,4 +34,4 @@ This is required only while setting the project first time. On renewals, just th
 ## Future Work
 Will explore this if need be of a standalone server. Using certbot command interactively gives a lot of options, including the option to auto renew certificates.
 The current process requires manual update of certificates.
-sudo certbot --nginx -d app.grainscan.in
+sudo certbot --nginx -d api.grainscan.in
