@@ -7,7 +7,17 @@
     <meta name="keywords" content="grain analysis, rice kernel, quality metrics, advanced analytics, grain measurement, agriculture technology">
     <link rel="icon" type="image/svg+xml" href="./assets/grainscan.svg" />
     <title>Grain Scan - Precision Grain Analysis</title>
-    <script defer src="/_vercel/insights/script.js"></script>
+    <!-- <script>
+        function toggleMenu() {
+            const navList = document.querySelector('header nav ul');
+            const overlay = document.getElementById('overlay');
+            const hamburger = document.getElementById('hamburger');
+            const isNavVisible = navList.style.display === 'flex';
+            navList.style.display = isNavVisible ? 'none' : 'flex';
+            hamburger.style.display = isNavVisible ? 'block' : 'none';
+            overlay.classList.toggle('active', !isNavVisible);
+        }
+    </script> -->
     <style>
         /* Basic Reset */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,15 +27,37 @@
         .container { max-width: 1200px; margin: auto; padding: 0 20px; }
 
         /* Header */
+        
         header {
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 0; background-color: #0c0c0c; position: fixed; width: 100%; z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            padding: 10px 0;
+            background-color: #0c0c0c;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
         }
         header h1 { font-weight: bold; color: #b08a4b; font-size: 1.8em; }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { color: #e5e5e5; text-decoration: none; font-size: 1.1em; }
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
         nav ul li a:hover { color: #b08a4b; }
+        .hamburger { display: none; }
 
         /* Hero Section */
         .hero {
@@ -47,17 +79,87 @@
 
         /* Card Style for Content */
         .content-card { background-color: #1a1a1a; padding: 30px; border-radius: 10px; margin: 20px auto; max-width: 800px; }
+
+         /* Basic styling for the image */
+         .responsive-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Media query for iPads (portrait and landscape) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .responsive-image {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        /* Media query for iPhones and other mobile devices */
+        @media (max-width: 767px) {
+            .responsive-image {
+                width: 100%;
+                height: auto;
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #0c0c0c;
+                z-index: 0;
+                box-shadow: 0 4px 8px #d1d1d1;
+            }
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+            nav ul li a {
+                width: 100%;
+                text-align: center;
+            }
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                margin-left: auto;
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .overlay.active {
+                display: block;
+            }
+        }
         
         /* Footer */
         footer { background-color: #0c0c0c; text-align: center; padding: 20px 0; font-size: 0.9em; color: #777; }
-
     </style>
 </head>
 <body>
+    <!-- Overlay for fading the rest of the page -->
+    <div class="overlay" id="overlay"></div>
 
     <!-- Header Section -->
     <header class="container">
-        <h1>Grain Scan</h1>
+        <div style="display:inline-flexbox;">
+            <h1>Grain Scan</h1>
+            <!-- <div id="hamburger" class="hamburger" onclick="toggleMenu()">☰</div> -->
+        </div>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -77,12 +179,14 @@
     <div style="text-align: center;">
         <a href="https://app.grainscan.in" style="justify-content: center; justify-items: auto;" class="btn top-margin-btn">Get Started</a>
     </div>
-    <img style="display: flex; padding: 30px 60px;" src="./assets/grain-scan-logo.png"/>
+    <picture>
+        <img style="display: flex; padding: 30px 60px;" src="./assets/grain-scan-logo.png" class="responsive-image"/>
+    </picture>
     <!-- About Section -->
     <section class="container" id="about">
         <h2>About Grain Scan</h2>
         <div class="content-card">
-            <p class="section-text">India is the largest exporter of the rice in the world and second largest producer of rice in the world. Grain Insights was started on the realisation that there is a lot of research available in the agricultural indistry to analyze the quality of the rice, but no freeware solution is present for the same. The project has started with Basmati Rice Grain Analysis, and would continue to add support for more grains.</p>
+            <p class="section-text">India is the largest exporter of the rice in the world and second largest producer of rice in the world. GrainScan was started on the realisation that there is a lot of research available in the agricultural indistry to analyze the quality of the rice, but no freeware solution is present for the same. The project has started with Basmati Rice Grain Analysis, and would continue to add support for more grains.</p>
             <p class="section-text">At Grain Scan, we offer cutting-edge tools for measuring and analyzing rice kernel quality. With highly accurate data on size, shape, and quality metrics, our platform is designed to provide the agricultural sector with essential scans for enhanced quality control and decision-making.</p>
         </div>
     </section>
