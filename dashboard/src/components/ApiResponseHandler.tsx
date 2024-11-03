@@ -89,7 +89,7 @@ const ApiResponseHandler: React.FC = () => {
 	};
 
 	return (
-		<div>
+		<div className="bg-inherit">
 			<ImageUpload
 				onImageUpload={handleImageUpload}
 				resetResultPreview={() => {

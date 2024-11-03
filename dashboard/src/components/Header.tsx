@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {
 	SignedIn,
 	SignedOut,
@@ -6,11 +6,15 @@ import {
 	UserButton,
 } from "@clerk/clerk-react";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
-const Header: React.FC = () => {
+export interface InputProps 
+	extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+const Header = React.forwardRef<HTMLInputElement, InputProps>(
+	({ className }, ref) => {
 	return (
-		// do styling by tailwind
-		<header style={{ display: "flex", justifyContent: "flex-end" }}>
+		<header className={cn(className)} ref={ref}>
 			<SignedOut>
 				<SignInButton>
 					<Button>Sign In</Button>
@@ -21,6 +25,6 @@ const Header: React.FC = () => {
 			</SignedIn>
 		</header>
 	);
-};
+});
 
 export default Header;
