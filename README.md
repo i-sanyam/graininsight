@@ -26,6 +26,6 @@ Contributions are welcome!
 The project has three active deployments
 1. app - Backend API hosted at api.grainscan.in
 2. frontend-landing-page - Frontend Landing Page hosted at grainscan.in
-3. dashboard - Grain Scan User Dashboard
+3. dashboard - Grain Scan User Dashboard hosted at app.grainscan.in
 
 Made with ❤️ in 🇮🇳 for the 🌎
