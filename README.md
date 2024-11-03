@@ -16,4 +16,16 @@ Most agriculturists who ought to benefit from this kind of a solution are not te
 This is a not for profit project. It's a medium of giving back.
 Contributions are welcome!
 
+### Project Structure
+```
+|  graininsight
+|       - app
+|       - frontend-landing-page
+|       - dashboard
+```
+The project has three active deployments
+1. app - Backend API hosted at api.grainscan.in
+2. frontend-landing-page - Frontend Landing Page hosted at grainscan.in
+3. dashboard - Grain Scan User Dashboard
+
 Made with ❤️ in 🇮🇳 for the 🌎
